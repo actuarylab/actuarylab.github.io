@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ActuaryLab I — Tarificación con Datos de Mercado de la CNSF</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #0d1f2d;
+    --navy2:   #1a3348;
+    --navy3:   #0a1820;
+    --teal:    #6ba08d;
+    --teal2:   #8fbdad;
+    --cream:   #f5faf8;
+    --cream2:  #e8f0ed;
+    --accent:  #e07b39;
+    --accent2: #f0955a;
+    --text:    #0d1f2d;
+    --muted:   #4a6070;
+    --mono:    'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy3); color: #e2eaf0; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,24,32,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(107,160,141,0.15);
+    padding: 0 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand { text-decoration: none; font-family: 'DM Serif Display', serif; font-size: 1.35rem; }
+  .nav-brand .a { color: var(--teal2); }
+  .nav-brand .b { color: rgba(255,255,255,0.5); }
+  .nav-tag { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.08em; }
+  .nav-cta {
+    background: var(--accent); color: white;
+    padding: 8px 20px; border-radius: 5px;
+    font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent2); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px 8% 70px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, var(--navy3) 55%, #0f2a1e 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(107,160,141,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  }
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal); 
+  }
+  .hero-sep { width: 32px; height: 1px; background: var(--teal); opacity: 0.5; }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.1; color: white;
+    max-width: 780px; margin-bottom: 10px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--teal2); margin-bottom: 28px;
+    font-style: italic;
+  }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.8;
+    color: rgba(226,234,240,0.7);
+    max-width: 580px; margin-bottom: 40px;
+  }
+  .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+  .pill {
+    font-family: var(--mono);
+    font-size: 0.72rem; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    border: 1px solid rgba(107,160,141,0.3);
+    color: var(--teal2);
+    background: rgba(107,160,141,0.07);
+  }
+  .pill.accent { border-color: rgba(224,123,57,0.4); color: var(--accent2); background: rgba(224,123,57,0.07); }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn-main {
+    background: var(--accent); color: white;
+    padding: 14px 32px; border-radius: 6px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-main:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--teal2); font-size: 0.9rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(143,189,173,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--teal2); }
+  .hero-price {
+    margin-top: 20px;
+    font-size: 0.85rem; color: rgba(226,234,240,0.45);
+  }
+  .hero-price strong { color: rgba(226,234,240,0.8); font-size: 1rem; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(107,160,141,0.12);
+    margin: 0;
+  }
+
+  /* SECCIONES BASE */
+  .section { padding: 80px 8%; }
+  .section-mono {
+    font-family: var(--mono);
+    font-size: 0.68rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 14px; display: block;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    color: white; line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-body {
+    font-size: 0.97rem; line-height: 1.8;
+    color: rgba(226,234,240,0.65);
+    max-width: 620px; margin-bottom: 48px;
+  }
+
+  /* DIFERENCIADORES */
+  .diff { background: var(--navy2); }
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    border: 1px solid rgba(107,160,141,0.1);
+    border-radius: 12px; overflow: hidden;
+    margin-top: 40px;
+  }
+  .diff-item {
+    padding: 32px 28px;
+    background: rgba(255,255,255,0.02);
+    transition: background 0.2s;
+  }
+  .diff-item:hover { background: rgba(107,160,141,0.08); }
+  .diff-num {
+    font-family: var(--mono);
+    font-size: 0.65rem; color: var(--accent);
+    letter-spacing: 0.1em; margin-bottom: 14px; display: block;
+  }
+  .diff-item h3 {
+    font-size: 1rem; font-weight: 600;
+    color: white; margin-bottom: 10px; line-height: 1.3;
+  }
+  .diff-item p { font-size: 0.87rem; color: rgba(226,234,240,0.55); line-height: 1.65; }
+
+  /* SESIONES */
+  .sessions { background: var(--navy3); }
+  .sessions-list { margin-top: 40px; }
+  .session-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(107,160,141,0.1);
+    transition: background 0.2s;
+  }
+  .session-row:first-child { border-top: 1px solid rgba(107,160,141,0.1); }
+  .session-row:hover { background: rgba(107,160,141,0.05); }
+  .session-num {
+    padding: 28px 20px;
+    font-family: var(--mono);
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.1em;
+    border-right: 1px solid rgba(107,160,141,0.1);
+    display: flex; align-items: flex-start; padding-top: 30px;
+  }
+  .session-content { padding: 28px 32px; }
+  .session-content h3 {
+    font-size: 1rem; font-weight: 600;
+    color: white; margin-bottom: 8px;
+  }
+  .session-content p {
+    font-size: 0.87rem;
+    color: rgba(226,234,240,0.55);
+    line-height: 1.65;
+  }
+
+  /* PARA QUIÉN */
+  .audience { background: var(--navy2); }
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px; margin-top: 40px;
+  }
+  .audience-card {
+    padding: 28px 24px;
+    border: 1px solid rgba(107,160,141,0.12);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+  }
+  .audience-card h3 { font-size: 0.97rem; font-weight: 600; color: white; margin-bottom: 10px; }
+  .audience-card p { font-size: 0.87rem; color: rgba(226,234,240,0.55); line-height: 1.65; }
+
+  /* QUÉ INCLUYE */
+  .includes { background: var(--navy3); }
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px; margin-top: 40px;
+  }
+  .include-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 20px;
+    border: 1px solid rgba(107,160,141,0.1);
+    border-radius: 8px;
+  }
+  .include-check {
+    width: 20px; height: 20px; flex-shrink: 0;
+    background: rgba(107,160,141,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; color: var(--teal2);
+    margin-top: 1px;
+  }
+  .include-item p { font-size: 0.88rem; color: rgba(226,234,240,0.7); line-height: 1.55; }
+
+  /* PRECIO / CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy2) 0%, #0f2a1e 100%);
+    padding: 80px 8%;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(107,160,141,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section .section-mono { justify-content: center; display: block; }
+  .cta-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem; color: white; line-height: 1;
+    margin: 16px 0 6px;
+  }
+  .cta-price sup { font-size: 1.8rem; vertical-align: super; }
+  .cta-price span { font-size: 1.2rem; font-family: 'DM Sans', sans-serif; color: rgba(255,255,255,0.4); font-weight: 300; }
+  .cta-note { font-size: 0.88rem; color: rgba(226,234,240,0.45); margin-bottom: 36px; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent); color: white;
+    padding: 16px 44px; border-radius: 7px;
+    font-weight: 700; font-size: 1rem;
+    text-decoration: none; transition: all 0.2s;
+    margin-bottom: 16px;
+  }
+  .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(224,123,57,0.3); }
+  .cta-email {
+    display: block;
+    font-size: 0.85rem; color: rgba(226,234,240,0.4);
+    margin-top: 12px;
+  }
+  .cta-email strong { color: rgba(226,234,240,0.7); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy3);
+    border-top: 1px solid rgba(107,160,141,0.1);
+    padding: 24px 8%;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+  }
+  .footer-brand { font-family: 'DM Serif Display', serif; font-size: 1.1rem; }
+  .footer-brand .a { color: var(--teal2); }
+  .footer-brand .b { color: rgba(255,255,255,0.3); }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+  /* ANIMACIONES */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.7s ease both; }
+  .hero > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero > *:nth-child(4) { animation-delay: 0.35s; }
+  .hero > *:nth-child(5) { animation-delay: 0.45s; }
+  .hero > *:nth-child(6) { animation-delay: 0.55s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <a href="../index.html" class="nav-brand"><span class="a">Actuary</span><span class="b">Lab</span></a>
+    <span class="nav-tag">Lab I</span>
+  </div>
+  <a href="#inscripcion" class="nav-cta">Solicitar informes</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-label">Lab I</span>
+    <span class="hero-sep"></span>
+    <span class="hero-label">5 sesiones · 15 horas</span>
+  </div>
+  <h1>Tarificación con<br><em>Datos de Mercado</em><br>de la CNSF</h1>
+  <p class="hero-desc">Un recorrido actuarial completo: desde los datos oficiales hasta la prima recomendada, con normativa EPA-01 y CUSF integrada en cada paso. En R y Python, con Quarto.</p>
+  <div class="hero-pills">
+    <span class="pill">R + Python</span>
+    <span class="pill">Quarto</span>
+    <span class="pill">Datos CNSF 2024</span>
+    <span class="pill">EPA-01 · CUSF</span>
+    <span class="pill accent">Portafolio en GitHub</span>
+  </div>
+  <div class="hero-actions">
+    <a href="#inscripcion" class="btn-main">Solicitar informes →</a>
+  </div>
+  <p class="hero-price">Precio de lanzamiento: <strong>$1,800 MXN</strong></p>
+</section>
+
+<hr class="divider">
+
+<!-- MÉTODO -->
+<section class="section" style="background: var(--navy3);">
+  <span class="section-mono">Nuestra propuesta</span>
+  <h2 class="section-title">El método ActuaryLab</h2>
+  <p class="section-body">En ActuaryLab proponemos flujos de trabajo actuarial.</p>
+</section>
+<section class="section diff">
+  <span class="section-mono">¿Por qué este taller?</span>
+  <h2 class="section-title">Lo que lo hace distinto</h2>
+  <div class="diff-grid">
+    <div class="diff-item">
+      <span class="diff-num">01</span>
+      <h3>Datos oficiales desde el primer minuto</h3>
+      <p>Trabajas con la base real de la CNSF 2024, tal como llega: con sesgo, con ruido, con las limitaciones que tiene en la práctica.</p>
+    </div>
+    <div class="diff-item">
+      <span class="diff-num">02</span>
+      <h3>Normativa EPA-01 y CUSF integrada</h3>
+      <p>Cada decisión técnica se toma bajo el marco regulatorio mexicano. No es teoría separada de la norma — es la norma en acción.</p>
+    </div>
+    <div class="diff-item">
+      <span class="diff-num">03</span>
+      <h3>Una prima con nombre, no un AIC</h3>
+      <p>El taller no termina en métricas de ajuste. Termina en una prima recomendada que puedes defender ante una dirección técnica.</p>
+    </div>
+    <div class="diff-item">
+      <span class="diff-num">04</span>
+      <h3>Posición frente al mercado</h3>
+      <p>Calculas log-Gap y construyes una matriz estratégica para entender dónde está tu prima respecto al mercado.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SESIONES -->
+<section class="section sessions" id="sesiones">
+  <span class="section-mono">Contenido</span>
+  <h2 class="section-title">Cinco sesiones,<br>un flujo completo</h2>
+  <p class="section-body">Cada sesión construye sobre la anterior. Al finalizar tienes un proceso actuarial documentado de principio a fin.</p>
+  <div class="sessions-list">
+    <div class="session-row">
+      <div class="session-num">S01</div>
+      <div class="session-content">
+        <h3>Datos, calidad y sesgo</h3>
+        <p>Descarga, limpieza y diagnóstico de la base CNSF. Identificación de sesgos de registro, celdas vacías y criterios de exclusión bajo EPA-01.</p>
+      </div>
+    </div>
+    <div class="session-row">
+      <div class="session-num">S02</div>
+      <div class="session-content">
+        <h3>Frecuencia, severidad y modificaciones de póliza</h3>
+        <p>Modelización de frecuencia y severidad desde datos agregados. Ajuste con mezcla empírica ponderada y preservación de colas. Efecto de deducibles y límites.</p>
+      </div>
+    </div>
+    <div class="session-row">
+      <div class="session-num">S03</div>
+      <div class="session-content">
+        <h3>Proyección e inflación médica</h3>
+        <p>Tendencias de frecuencia y severidad. Índices de inflación médica y su incorporación al modelo. Proyección a periodo de riesgo.</p>
+      </div>
+    </div>
+    <div class="session-row">
+      <div class="session-num">S04</div>
+      <div class="session-content">
+        <h3>Prima, riesgo y la decisión</h3>
+        <p>Construcción del modelo colectivo. Simulación de pérdidas agregadas. VaR y TVaR como recargo de seguridad. Prima pura recomendada.</p>
+      </div>
+    </div>
+    <div class="session-row">
+      <div class="session-num">S05</div>
+      <div class="session-content">
+        <h3>KPIs, estrategia y reporte a dirección</h3>
+        <p>Cálculo de log-Gap y posición frente al mercado. Matriz estratégica de decisión. Reporte ejecutivo de una página con Quarto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PARA QUIÉN -->
+<section class="section audience">
+  <span class="section-mono">Audiencia</span>
+  <h2 class="section-title">¿Para quién es este taller?</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <h3>Estudiantes de actuaría</h3>
+      <p>A partir del 8° semestre. Con bases de probabilidad y estadística. Quieres trabajar con datos de mercado antes de egresar.</p>
+    </div>
+    <div class="audience-card">
+      <h3>Actuarios en ejercicio</h3>
+      <p>Trabajas en seguros o reaseguro y quieres formalizar el flujo de tarificación con criterio regulatorio documentado.</p>
+    </div>
+    <div class="audience-card">
+      <h3>Profesionales de riesgo</h3>
+      <p>Tu trabajo involucra análisis cuantitativo del riesgo y quieres incorporar herramientas actuariales a tu práctica.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- QUÉ INCLUYE -->
+<section class="section includes">
+  <span class="section-mono">Lo que obtienes</span>
+  <h2 class="section-title">Tu portafolio al finalizar</h2>
+  <p class="section-body">No solo conocimiento — un entregable real que puedes mostrar en una entrevista o ante un equipo técnico.</p>
+  <div class="includes-grid">
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>5 sesiones en vivo de 3 horas cada una</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Grabaciones de todas las sesiones</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Repositorio en GitHub con el flujo completo documentado</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Prima recomendada con justificación técnica y regulatoria</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Reporte ejecutivo de una página generado con Quarto</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Notebooks comentados en R y Python</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Base de datos CNSF 2024 procesada y lista para usar</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Canal privado de dudas entre sesiones</p>
+    </div>
+    <div class="include-item">
+      <div class="include-check">✓</div>
+      <p>Constancia de participación ActuaryLab</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<section class="cta-section" id="inscripcion">
+  <span class="section-mono">Precio de lanzamiento</span>
+  <div class="cta-price"><sup>$</sup>1,800 <span>MXN</span></div>
+  <p class="cta-note">Cupo limitado · Próximas ediciones tendrán precio mayor</p>
+  <a href="mailto:contacto@actuarylabmx.com?subject=Informes ActuaryLab I" class="cta-btn">Solicitar informes y pre-inscripción →</a>
+  <p class="cta-email">O escríbenos directamente a <strong>contacto@actuarylabmx.com</strong></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><span class="a">Actuary</span><span class="b">Lab</span></div>
+  <p>© 2026 ActuaryLab · Formación actuarial práctica</p>
+  <p>contacto@actuarylabmx.com</p>
+</footer>
+
+</body>
+</html>
