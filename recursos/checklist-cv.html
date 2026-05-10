@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist CV Actuarial — ActuaryLab</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0d1f2d; --navy-mid:#1a3348; --sage:#6ba08d; --sage-l:#8fbdad;
+    --cream:#e8f0ed; --white:#f5faf8; --bg:#f0f4f2; --gray:#666; --line:#dbe5e1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--navy);line-height:1.5}
+  .hero{background:var(--navy);padding:56px 24px 48px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(107,160,141,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(107,160,141,.055) 1px,transparent 1px);background-size:34px 34px}
+  .hero:after{content:"";position:absolute;width:520px;height:360px;border-radius:50%;right:-120px;top:-120px;background:radial-gradient(ellipse,rgba(107,160,141,.16),transparent 65%)}
+  .hero-inner{position:relative;z-index:1;max-width:980px;margin:0 auto}
+  .brand{font-size:18px;font-weight:600;color:var(--cream);margin-bottom:32px}.brand span{color:var(--sage)}
+  .tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sage);background:rgba(107,160,141,.12);border:1px solid rgba(107,160,141,.25);padding:6px 14px;border-radius:22px;display:inline-block;margin-bottom:18px}
+  h1{font-family:'Playfair Display',serif;font-size:54px;line-height:1.05;color:var(--cream);font-weight:900;margin-bottom:14px}
+  h1 em{color:var(--sage);font-style:italic}
+  .subtitle{font-size:16px;color:rgba(232,240,237,.62);font-weight:300;max-width:690px}
+  .meta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}.pill{font-family:'DM Mono',monospace;font-size:10px;color:var(--sage-l);border:1px solid rgba(143,189,173,.25);border-radius:999px;padding:6px 12px;background:rgba(143,189,173,.08)}
+  .wrap{max-width:980px;margin:0 auto;padding:42px 24px 64px}
+  .intro{background:var(--white);border-left:4px solid var(--sage);border-radius:14px;padding:20px 22px;margin-bottom:28px;box-shadow:0 2px 10px rgba(0,0,0,.05);font-size:14px;color:var(--gray)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .section{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.055);overflow:hidden;border-top:3px solid var(--sage)}
+  .section-head{padding:18px 20px 12px;border-bottom:1px solid var(--line)}
+  .num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--sage);text-transform:uppercase;margin-bottom:5px}
+  h2{font-family:'Playfair Display',serif;font-size:24px;line-height:1.15;color:var(--navy);font-weight:900} h2 em{font-style:italic;color:var(--sage)}
+  .items{padding:14px 20px 20px;display:flex;flex-direction:column;gap:10px}
+  label{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:13px;color:#333;font-weight:300;cursor:pointer}
+  input[type="checkbox"]{appearance:none;width:18px;height:18px;border:1.6px solid var(--sage);border-radius:5px;margin-top:1px;background:#fff;display:grid;place-items:center;cursor:pointer}
+  input[type="checkbox"]:checked{background:var(--sage);border-color:var(--sage)}
+  input[type="checkbox"]:checked:after{content:"✓";font-size:13px;color:var(--navy);font-weight:700;line-height:1}
+  code{font-family:'DM Mono',monospace;font-size:12px;background:var(--bg);padding:1px 5px;border-radius:5px;color:var(--navy-mid)}
+  .download{margin-top:30px;background:var(--navy);color:var(--cream);border-radius:18px;padding:28px 30px;position:relative;overflow:hidden}
+  .download:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(107,160,141,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(107,160,141,.05) 1px,transparent 1px);background-size:26px 26px}
+  .download > *{position:relative;z-index:1}.download h3{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:6px}.download h3 em{color:var(--sage);font-style:italic}.download p{color:rgba(232,240,237,.58);font-size:13px;font-weight:300}
+  .footer{background:var(--navy-mid);padding:22px 24px;color:rgba(232,240,237,.35);font-family:'DM Mono',monospace;font-size:10px;text-align:center;letter-spacing:.8px}
+  @media print{.hero,.download,.footer{background:#fff;color:#000}.tag,.pill{border:1px solid #777;color:#333}.grid{grid-template-columns:1fr}.section{box-shadow:none;border:1px solid #ddd;break-inside:avoid}.wrap{padding:24px}.subtitle,.download p{color:#333}h1{color:#000}.brand{color:#000}.hero:before,.hero:after,.download:before{display:none}}
+  @media(max-width:760px){h1{font-size:40px}.grid{grid-template-columns:1fr}.hero{padding:42px 22px 36px}.wrap{padding:28px 18px 48px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">Actuary<span>Lab</span></div>
+    <div class="tag">Field Resources · CV Actuarial</div>
+    <h1>Checklist de <em>CV</em><br>Actuarial</h1>
+    <p class="subtitle">Una revisión práctica para perfiles actuariales junior: formato, experiencia, habilidades técnicas, regulación, formación complementaria y revisión final.</p>
+    <div class="meta"><span class="pill">Mercado mexicano</span><span class="pill">Compatible con ATS</span><span class="pill">Versión imprimible</span></div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro">Usa este checklist antes de enviar tu CV. La idea no es “llenarlo todo”, sino asegurarte de que cada línea sea clara, defendible y útil para conseguir una entrevista.</div>
+  <div class="grid">
+    <section class="section"><div class="section-head"><div class="num">01 · Formato y ATS</div><h2>Primer <em>vistazo</em></h2></div><div class="items">
+      <label><input type="checkbox"><span>Tiene máximo 1 página si soy perfil junior.</span></label>
+      <label><input type="checkbox"><span>Usa una estructura de una columna, fuente legible y secciones claras.</span></label>
+      <label><input type="checkbox"><span>En versión digital/ATS no incluye fotografía.</span></label>
+      <label><input type="checkbox"><span>Está exportado como PDF.</span></label>
+      <label><input type="checkbox"><span>El archivo se llama <code>CV_Nombre_Apellido.pdf</code>.</span></label>
+    </div></section>
+    <section class="section"><div class="section-head"><div class="num">02 · Contacto</div><h2>Datos de <em>contacto</em></h2></div><div class="items">
+      <label><input type="checkbox"><span>Mi correo es profesional.</span></label>
+      <label><input type="checkbox"><span>LinkedIn está actualizado y con URL personalizada.</span></label>
+      <label><input type="checkbox"><span>GitHub está incluido solo si tiene al menos un proyecto presentable.</span></label>
+    </div></section>
+    <section class="section"><div class="section-head"><div class="num">03 · Experiencia</div><h2>Experiencia <em>aplicada</em></h2></div><div class="items">
+      <label><input type="checkbox"><span>Cada experiencia usa verbo de acción + resultado concreto.</span></label>
+      <label><input type="checkbox"><span>Servicio social, tesis, proyectos académicos o clubes están descritos como experiencia aplicada.</span></label>
+      <label><input type="checkbox"><span>No uso frases genéricas como “apoyé en tareas”.</span></label>
+    </div></section>
+    <section class="section"><div class="section-head"><div class="num">04 · Habilidades técnicas</div><h2>Herramientas con <em>contexto</em></h2></div><div class="items">
+      <label><input type="checkbox"><span>Cada herramienta incluye contexto de uso.</span></label>
+      <label><input type="checkbox"><span>Priorizo herramientas que puedo defender en entrevista.</span></label>
+      <label><input type="checkbox"><span>Incluyo proyectos o evidencia cuando menciono R, Python, SQL, Power BI, AWS/Azure o GitHub.</span></label>
+    </div></section>
+    <section class="section"><div class="section-head"><div class="num">05 · Regulación y mercado</div><h2>Marco <em>profesional</em></h2></div><div class="items">
+      <label><input type="checkbox"><span>Si aplico a seguros, conecto mi perfil con LISF, CUSF, CNSF o EPA cuando sea real y defendible.</span></label>
+      <label><input type="checkbox"><span>Si aplico a banca/inversiones, menciono formación financiera relevante solo si puedo explicarla; AMIB Figura 3 puede ser un plus.</span></label>
+    </div></section>
+    <section class="section"><div class="section-head"><div class="num">06 · Formación complementaria</div><h2>Cursos y <em>programas</em></h2></div><div class="items">
+      <label><input type="checkbox"><span>Cursos de Academia Santander, becariados SAS u otros programas están reportados con institución, tema, año y herramienta.</span></label>
+      <label><input type="checkbox"><span>Si el curso tuvo proyecto final, incluyo el entregable: dashboard, notebook, reporte, repositorio o certificado.</span></label>
+      <label><input type="checkbox"><span>No lleno el CV con cursos sueltos; priorizo los que conectan con el puesto o sector al que aplico.</span></label>
+    </div></section>
+    <section class="section"><div class="section-head"><div class="num">07 · Revisión final</div><h2>Antes de <em>enviar</em></h2></div><div class="items">
+      <label><input type="checkbox"><span>No tiene errores ortográficos.</span></label>
+      <label><input type="checkbox"><span>Está adaptado al puesto o sector al que aplico.</span></label>
+      <label><input type="checkbox"><span>Puedo explicar cada línea del CV en entrevista.</span></label>
+    </div></section>
+  </div>
+  <section class="download"><h3>Úsalo como revisión <em>final</em></h3><p>También puedes imprimir esta página o guardarla como PDF desde tu navegador. Ideal para revisar tu CV antes de enviarlo a una vacante o compartirlo con alguien para retroalimentación.</p></section>
+</main>
+<footer class="footer">ActuaryLab · Field Resources · Checklist CV Actuarial</footer>
+</body>
+</html>
