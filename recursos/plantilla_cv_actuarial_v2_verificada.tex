@@ -1,0 +1,82 @@
+% Plantilla CV Actuarial — ActuaryLab
+% Enfoque: distintiva pero ATS-friendly (una columna, sin tablas complejas ni foto)
+% Uso sugerido: Overleaf con compilador pdfLaTeX
+% Sin instalación local necesaria — sube este archivo y compila directamente
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=1.35cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{lmodern}
+
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt}
+
+\definecolor{navy}{HTML}{0D1F2D}
+\definecolor{sage}{HTML}{6BA08D}
+\definecolor{softgray}{HTML}{666666}
+
+\titleformat{\section}
+  {\large\bfseries\color{navy}}
+  {}{0em}{}[\vspace{-2pt}{\color{sage}\titlerule[0.8pt]}]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+
+\newcommand{\cvitem}[2]{\textbf{#1:} #2\\}
+\newcommand{\role}[4]{
+  \textbf{#1} \hfill {\color{softgray} #2}\\
+  \textit{#3}\\[-2pt]
+  #4\vspace{3pt}
+}
+
+\begin{document}
+
+% Sin foto: recomendado para versiones digitales y ATS.
+{\Huge \textbf{Nombre Apellido}}\\[-1pt]
+{\color{sage}\rule{\textwidth}{1.2pt}}\\[3pt]
+\href{mailto:nombre.apellido@email.com}{nombre.apellido@email.com} \; | \; Toluca, México \; | \; \href{https://linkedin.com/in/tu-nombre}{linkedin.com/in/tu-nombre} \; | \; \href{https://github.com/tuusuario}{github.com/tuusuario}
+
+\section*{Perfil}
+Estudiante de Actuaría / Actuario(a) junior con interés en ciencias actuariales, seguros, regulación y análisis de datos. Experiencia aplicada en R/Python, documentación reproducible y proyectos con datos públicos.
+
+\section*{Experiencia y proyectos aplicados}
+\role{Servicio Social · Facultad de Economía, UAEMéx}{2025--2026}{R/Python · análisis demográfico · artículo científico}{
+\begin{itemize}
+  \item Procesé, limpié y validé bases de datos demográficos para su aplicación en un artículo científico utilizando R/Python.
+  \item Elaboré resúmenes estadísticos y visualizaciones para apoyar la interpretación de resultados.
+\end{itemize}}
+
+\role{Proyecto actuarial · Graduación de tablas de mortalidad}{2026}{R · CUSF Anexo 6.3.8 · documentación reproducible}{
+\begin{itemize}
+  \item Realicé la graduación de tablas de mortalidad con datos públicos aplicando criterios regulatorios del Anexo 6.3.8 de la CUSF.
+  \item Documenté supuestos, metodología y resultados en un reporte reproducible.
+\end{itemize}}
+
+\role{Club de Actuaría UAEMéx · Área de habilidades blandas}{2024--2025}{Comunicación profesional · organización estudiantil}{
+\begin{itemize}
+  \item Coordiné actividades de integración y comunicación profesional para estudiantes de actuaría.
+  \item Apoyé en difusión, logística y organización de talleres y eventos académicos.
+\end{itemize}}
+
+\section*{Educación}
+\textbf{Licenciatura en Actuaría} \hfill 2022--2026\\
+Universidad / Facultad
+
+\section*{Habilidades técnicas}
+\cvitem{R}{tidyverse, ggplot2, ajuste de distribuciones, simulación Monte Carlo, reportes reproducibles}
+\cvitem{Python}{pandas, numpy, análisis exploratorio, visualización, scikit-learn básico}
+\cvitem{Datos y documentación}{SQL básico, Git/GitHub, Quarto, README técnico}
+\cvitem{Regulación}{LISF, CUSF, CNSF, EPA; comprensión inicial de LCNBV si el perfil se orienta a banca o inversiones}
+\cvitem{Cloud / BI}{Power BI/Tableau básico; AWS/Azure nivel inicial si aplica al puesto}
+
+\section*{Formación complementaria}
+\begin{itemize}
+  \item Cursos, congresos, seminarios o comunidades actuariales relevantes.
+  \item Para perfiles de banca, inversiones o riesgos financieros: considerar formación complementaria como AMIB Figura 3 si aplica al objetivo profesional.
+\end{itemize}
+
+\end{document}
