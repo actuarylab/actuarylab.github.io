@@ -1,1 +1,1046 @@
-<!-- temp -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía del CV Actuarial — Field Resources · ActuaryLab</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:     #0d1f2d;
+    --navy-mid: #1a3348;
+    --navy-l:   #2a4a62;
+    --sage:     #6ba08d;
+    --sage-l:   #8fbdad;
+    --sage-p:   #c2d8d0;
+    --sage-bg:  #ddeee8;
+    --cream:    #e8f0ed;
+    --white:    #f5faf8;
+    --bg:       #f0f4f2;
+    --gray:     #666666;
+    --gray-l:   #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+  }
+
+  /*  HERO  */
+  .hero {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    padding: 72px 52px 64px;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(107,160,141,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,160,141,0.055) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(107,160,141,0.12) 0%, transparent 65%);
+    top: -150px; right: -100px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 900px; margin: 0 auto;
+  }
+
+  .hero-nav {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .hero-nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700; color: var(--cream);
+  }
+
+  .hero-nav-logo span { color: var(--sage); }
+
+  .hero-nav-sep { color: rgba(232,240,237,0.2); font-size: 12px; }
+
+  .hero-nav-section {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sage);
+    background: rgba(107,160,141,0.1);
+    border: 1px solid rgba(107,160,141,0.2);
+    border-radius: 20px; padding: 4px 14px;
+    display: inline-block; margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px; font-weight: 900;
+    color: var(--cream); line-height: 1.05;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--sage); }
+
+  .hero-sub {
+    font-size: 16px; font-weight: 300;
+    color: rgba(232,240,237,0.55);
+    line-height: 1.65; margin-bottom: 32px;
+    max-width: 600px;
+  }
+
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: rgba(232,240,237,0.4);
+  }
+
+  .hero-meta-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--sage); flex-shrink: 0;
+  }
+
+  /*  ÍNDICE  */
+  .index-bar {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(107,160,141,0.15);
+    padding: 16px 52px;
+    position: sticky; top: 0; z-index: 100;
+  }
+
+  .index-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; gap: 24px; flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .index-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px; color: rgba(107,160,141,0.5);
+    letter-spacing: 2px; text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .index-link {
+    font-size: 11px; color: rgba(232,240,237,0.45);
+    text-decoration: none; transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .index-link:hover { color: var(--sage); }
+
+  /*  CONTENIDO  */
+  .content {
+    max-width: 900px; margin: 0 auto;
+    padding: 60px 52px 80px;
+  }
+
+  /*  SECCIÓN  */
+  .section { margin-bottom: 64px; }
+
+  .section-header {
+    display: flex; align-items: flex-start;
+    gap: 20px; margin-bottom: 28px;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px; font-weight: 900;
+    color: rgba(107,160,141,0.12);
+    line-height: 1; flex-shrink: 0;
+    margin-top: -8px;
+  }
+
+  .section-title-group {}
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 6px; display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 900;
+    color: var(--navy); line-height: 1.15;
+  }
+
+  .section-title em { font-style: italic; color: var(--sage); }
+
+  .section-intro {
+    font-size: 14px; font-weight: 300;
+    color: var(--gray); line-height: 1.75;
+    margin-bottom: 24px;
+    border-left: 3px solid var(--sage-bg);
+    padding-left: 18px;
+  }
+
+  .hr-sage {
+    border: none; border-top: 1px solid var(--gray-l);
+    margin-bottom: 24px;
+  }
+
+  /*  CARDS  */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px; margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 14px; padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border-top: 3px solid transparent;
+  }
+
+  .card.sage   { border-top-color: var(--sage); }
+  .card.navy   { border-top-color: var(--navy); }
+  .card.sage-l { border-top-color: var(--sage-l); }
+
+  .card-icon { font-size: 22px; margin-bottom: 10px; }
+
+  .card-title {
+    font-weight: 700; font-size: 13px;
+    color: var(--navy); margin-bottom: 8px;
+  }
+
+  .card-body {
+    font-size: 12px; font-weight: 300;
+    color: var(--gray); line-height: 1.65;
+  }
+
+  .card-body strong { color: var(--navy); font-weight: 600; }
+
+  /*  CONTRASTE  /   */
+  .contraste {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 20px;
+  }
+
+  .contraste-item {
+    border-radius: 12px; padding: 16px 18px;
+  }
+
+  .contraste-no {
+    background: #fff5f5;
+    border: 1px solid #fcd0d0;
+  }
+
+  .contraste-si {
+    background: #f0faf5;
+    border: 1px solid #c2e8d4;
+  }
+
+  .contraste-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 8px; display: block;
+  }
+
+  .contraste-no .contraste-label { color: #c05050; }
+  .contraste-si .contraste-label { color: #2a7060; }
+
+  .contraste-text {
+    font-size: 12px; font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .contraste-no .contraste-text { color: #7a3030; }
+  .contraste-si .contraste-text { color: #1a5040; }
+
+  .contraste-si .contraste-text strong { font-weight: 600; color: #0d3d2a; }
+
+  /*  EXPERIENCIAS  */
+  .exp-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+
+  .exp-item {
+    background: var(--white);
+    border-radius: 12px; padding: 18px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+
+  .exp-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--sage-bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+
+  .exp-content {}
+
+  .exp-title {
+    font-weight: 700; font-size: 13px;
+    color: var(--navy); margin-bottom: 4px;
+  }
+
+  .exp-desc {
+    font-size: 12px; font-weight: 300;
+    color: var(--gray); line-height: 1.6; margin-bottom: 8px;
+  }
+
+  .exp-example {
+    background: var(--sage-bg);
+    border-radius: 6px; padding: 8px 12px;
+    font-size: 11.5px; color: var(--navy-mid);
+    line-height: 1.55; font-style: italic;
+    border-left: 3px solid var(--sage);
+  }
+
+  /*  TABLA HABILIDADES  */
+  .skills-table {
+    width: 100%; border-collapse: collapse;
+    margin-bottom: 20px; border-radius: 12px;
+    overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .skills-table th {
+    background: var(--navy);
+    color: var(--sage);
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 14px; text-align: left;
+  }
+
+  .skills-table td {
+    padding: 11px 14px;
+    font-size: 12px; color: #444;
+    border-bottom: 1px solid var(--gray-l);
+    vertical-align: top; line-height: 1.5;
+  }
+
+  .skills-table tr:last-child td { border-bottom: none; }
+  .skills-table tr:nth-child(even) td { background: var(--bg); }
+
+  .skills-table td:first-child {
+    font-weight: 600; color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .skill-tag {
+    display: inline-block;
+    background: var(--sage-bg);
+    color: var(--navy-mid);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; font-weight: 500;
+    padding: 2px 7px; border-radius: 10px;
+    margin: 2px 2px 2px 0;
+  }
+
+  /*  ERRORES  */
+  .errors-list {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .error-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--white); border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    border-left: 3px solid #e88080;
+  }
+
+  .error-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .error-content {}
+  .error-title { font-weight: 700; font-size: 12px; color: var(--navy); margin-bottom: 3px; }
+  .error-desc  { font-size: 11.5px; font-weight: 300; color: var(--gray); line-height: 1.55; }
+  .error-fix   { font-size: 11px; color: #2a7060; font-weight: 500; margin-top: 4px; }
+
+  /*  DIFERENCIADORES  */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 20px;
+  }
+
+  .diff-card {
+    background: var(--navy);
+    border-radius: 14px; padding: 20px;
+    position: relative; overflow: hidden;
+  }
+
+  .diff-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--sage);
+  }
+
+  .diff-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+  .diff-title { font-weight: 700; font-size: 12px; color: var(--cream); margin-bottom: 6px; }
+  .diff-body  { font-size: 11px; font-weight: 300; color: rgba(232,240,237,0.55); line-height: 1.6; }
+  .diff-body strong { color: var(--sage-l); font-weight: 500; }
+
+  /*  CHECKLIST  */
+  .checklist {
+    background: var(--white);
+    border-radius: 16px; padding: 28px 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+  }
+
+  .checklist-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 900;
+    color: var(--navy); margin-bottom: 20px;
+  }
+
+  .checklist-title em { font-style: italic; color: var(--sage); }
+
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 12px; font-weight: 300;
+    color: #444; line-height: 1.5;
+  }
+
+  .check-box {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--sage);
+    border-radius: 4px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+
+  /*  ALERTA  */
+  .alert {
+    background: var(--sage-bg);
+    border: 1.5px solid var(--sage);
+    border-radius: 12px; padding: 16px 20px;
+    font-size: 12.5px; color: var(--navy);
+    line-height: 1.65; margin-bottom: 20px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert strong { font-weight: 700; color: var(--sage); }
+
+  /*  CTA DESCARGA  */
+  .cta-section {
+    background: var(--navy);
+    border-radius: 20px; padding: 48px 52px;
+    text-align: center; position: relative; overflow: hidden;
+    margin-top: 64px;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(107,160,141,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,160,141,0.055) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .cta-content { position: relative; z-index: 2; }
+
+  .cta-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 14px; display: block;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 900;
+    color: var(--cream); line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--sage); }
+
+  .cta-sub {
+    font-size: 13px; font-weight: 300;
+    color: rgba(232,240,237,0.5); margin-bottom: 32px;
+  }
+
+  .cta-form {
+    display: flex; gap: 10px; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 14px;
+  }
+
+  .cta-input {
+    background: rgba(232,240,237,0.07);
+    border: 1px solid rgba(107,160,141,0.3);
+    border-radius: 10px; padding: 12px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: var(--cream);
+    width: 280px; outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .cta-input::placeholder { color: rgba(232,240,237,0.3); }
+  .cta-input:focus { border-color: var(--sage); }
+
+  .cta-btn {
+    background: linear-gradient(135deg, var(--sage), #4a8070);
+    border: none; border-radius: 10px;
+    padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--navy); cursor: pointer;
+    transition: opacity 0.2s; letter-spacing: 0.5px;
+  }
+
+  .cta-btn:hover { opacity: 0.88; }
+
+  .cta-note {
+    font-size: 10px; color: rgba(232,240,237,0.25);
+  }
+
+  /*  FOOTER  */
+  .footer {
+    background: var(--navy-mid);
+    padding: 28px 52px;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: var(--cream);
+  }
+
+  .footer-brand span { color: var(--sage); }
+
+  .footer-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; color: rgba(232,240,237,0.3);
+    letter-spacing: 1px; text-align: right; line-height: 1.8;
+  }
+
+  /*  RESPONSIVE  */
+  @media (max-width: 700px) {
+    .hero { padding: 48px 24px 40px; }
+    .hero h1 { font-size: 38px; }
+    .content { padding: 40px 24px 60px; }
+    .cards-grid, .contraste, .checklist-grid, .diff-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 36px 24px; }
+    .cta-input { width: 100%; }
+    .index-bar { padding: 14px 24px; }
+    .footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!--  HERO  -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+
+    <div class="hero-nav">
+      <div class="hero-nav-logo">Actuary<span>Lab</span></div>
+      <div class="hero-nav-sep">›</div>
+      <div class="hero-nav-section">Field Resources</div>
+    </div>
+
+    <div class="hero-tag"> Field Resources · CV Actuarial</div>
+
+    <h1>Guía del <em>CV</em><br>Actuarial</h1>
+
+    <p class="hero-sub">Lo que el mercado actuarial espera ver en tu perfil — desde el primer vistazo hasta el elemento que hace que te llamen. Para actuarios en formación y en ejercicio.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div>Lectura: 8 minutos</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div>Incluye checklist descargable</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div>Perfiles: Seguros · Finanzas · Datos · Consultoría</div>
+    </div>
+
+  </div>
+</div>
+
+<!--  ÍNDICE  -->
+<div class="index-bar">
+  <div class="index-inner">
+    <span class="index-label">Contenido</span>
+    <a href="#s1" class="index-link">01 · El primer vistazo</a>
+    <a href="#s2" class="index-link">02 · Sin experiencia laboral</a>
+    <a href="#s3" class="index-link">03 · Habilidades técnicas</a>
+    <a href="#s4" class="index-link">04 · Errores frecuentes</a>
+    <a href="#s5" class="index-link">05 · Lo que te diferencia</a>
+    <a href="#s6" class="index-link">06 · Checklist final</a>
+  </div>
+</div>
+
+<!--  CONTENIDO  -->
+<div class="content">
+
+  <!-- SECCIÓN 01 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title-group">
+        <span class="section-tag">El primer vistazo</span>
+        <div class="section-title">Tienes <em>6 segundos.</em></div>
+      </div>
+    </div>
+    <hr class="hr-sage">
+    <p class="section-intro">En ese tiempo quien revisa tu CV decide si sigue leyendo. Tu CV no es un documento — es una primera impresión. El formato y la jerarquía visual importan antes que el contenido.</p>
+
+    <div class="cards-grid">
+      <div class="card sage">
+                <div class="card-title">Una página máximo</div>
+        <div class="card-body">Para perfiles con menos de 5 años de experiencia, una página bien organizada comunica más que dos páginas llenas. Quien revisa 50 CVs no lee — escanea.</div>
+      </div>
+      <div class="card sage">
+                <div class="card-title">Jerarquía visual clara</div>
+        <div class="card-body">Nombre grande arriba. Secciones bien definidas. Fuente legible entre 10–12pt. <strong>Sin columnas complicadas</strong> — los ATS (sistemas de filtrado automático) las procesan mal.</div>
+      </div>
+      <div class="card navy">
+                <div class="card-title">Correo profesional</div>
+        <div class="card-body">Tu correo es lo primero que ven. <strong>nombre.apellido@gmail.com</strong> comunica profesionalismo. actuario_2024@hotmail.com no.</div>
+      </div>
+      <div class="card navy">
+                <div class="card-title">LinkedIn actualizado</div>
+        <div class="card-body">Incluye la URL de tu LinkedIn personalizada. Si no aparece en tu CV, muchos reclutadores lo buscan de todas formas — más vale que encuentren algo.</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      
+      <div>El objetivo del CV no es conseguir el trabajo — es conseguir la entrevista. <strong>Cada elemento debe responder: ¿esto me acerca a esa llamada?</strong></div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 02 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-group">
+        <span class="section-tag">Sin experiencia laboral</span>
+        <div class="section-title">Sin trabajo no significa <em>sin experiencia.</em></div>
+      </div>
+    </div>
+    <hr class="hr-sage">
+    <p class="section-intro">El error más común en CVs de estudiantes es dejar en blanco la sección de experiencia o llenarla con descripciones genéricas. La clave está en presentar lo que sí tienes — con el enfoque correcto.</p>
+
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-icon"></div>
+        <div class="exp-content">
+          <div class="exp-title">Servicio Social con profesor de tiempo completo</div>
+          <div class="exp-desc">El SS en investigación es experiencia real — si lo presentas con verbo de acción + resultado concreto. Menciona el área, la institución y qué construiste o analizaste.</div>
+          <div class="exp-example">
+             "Apoyé al profesor en actividades de investigación actuarial."<br><br>
+             "Procesé, limpié y validé bases de datos demográficos para su aplicación en un artículo científico utilizando R/Python · Servicio Social · Facultad de Economía, UAEMéx · PTC [nombre jefe inmediato]"
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon"></div>
+        <div class="exp-content">
+          <div class="exp-title">Proyectos de materias con R o Python</div>
+          <div class="exp-desc">Un proyecto de clase bien documentado en GitHub es experiencia aplicada. No lo llames "tarea" — llámalo proyecto y descríbelo con el mismo rigor que una experiencia profesional.</div>
+          <div class="exp-example">
+             "Tarea final de Probabilidad y Estadística."<br><br>
+             "Graduación de tablas de mortalidad con datos públicos aplicando criterios regulatorios del Anexo 6.3.8 de la CUSF · implementación en R · documentación reproducible en Quarto"
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon"></div>
+        <div class="exp-content">
+          <div class="exp-title">Tesis o trabajo terminal</div>
+          <div class="exp-desc">Si tu tesis involucra modelización, datos o análisis actuarial, es tu proyecto más robusto. Presenta el tema, la metodología y el resultado — no solo el título.</div>
+          <div class="exp-example">
+             "Tesis: Aplicación de modelos actuariales."<br><br>
+             "Tesis: Valuación de reservas IBNR para cartera de daños a bienes mediante cadenas de Markov · R · datos simulados CNSF · en proceso / concluida [año]"
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon"></div>
+        <div class="exp-content">
+          <div class="exp-title">Congresos y ponencias</div>
+          <div class="exp-desc">Haber presentado en un congreso estudiantil o asistido a un evento técnico cuenta. Muestra iniciativa y exposición al entorno profesional.</div>
+          <div class="exp-example">
+             "Ponente · Congreso Nacional de Actuaría [año] · Tema: [título de la presentación]"<br><br>
+             "Asistente · Simposio de Riesgo Financiero · CNSF · [año]"
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon">️</div>
+        <div class="exp-content">
+          <div class="exp-title">Membresía en asociaciones</div>
+          <div class="exp-desc">Pertenecer al CONAC, participar en talleres de la CAS o formar parte de asociaciones estudiantiles y técnicas muestra compromiso con la profesión más allá del salón de clases.</div>
+          <div class="exp-example">
+             "Miembro activo · Colegio Nacional de Actuarios (CONAC) · desde [año]"<br><br>
+             "Participante · Taller CAS · [tema] · [año]"<br><br>
+             "Miembro · Club de Actuaría UAEMéx · [año–año] · área de habilidades blandas<br><br>Logros sugeridos: organización de talleres y dinámicas para estudiantes de actuaría · coordinación de actividades de integración y comunicación profesional · apoyo en difusión y logística de eventos académicos"
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon"></div>
+        <div class="exp-content">
+          <div class="exp-title">Formación complementaria y becariados</div>
+          <div class="exp-desc">Cursos gratuitos, becariados y programas de formación pueden fortalecer mucho un perfil junior si se reportan con evidencia: tema, herramienta, institución, año y entregable aplicado.</div>
+          <div class="exp-example">
+             "Academia Santander · Power BI y Visualización de Datos · [año] · dashboard final de indicadores financieros"<br><br>
+             "Academia Santander · Python para Ciencia de Datos · [año] · análisis exploratorio documentado en notebook"<br><br>
+             "Becariado SAS · Summer/Winter Program · [año] · formación en analítica, minería de datos y herramientas estadísticas aplicadas"
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="alert">
+      
+      <div><strong>La regla del verbo + resultado:</strong> Cada línea de experiencia debe empezar con un verbo de acción (construí · modelicé · analicé · procesé · documenté) y terminar con un resultado o entregable concreto. "Apoyé en tareas" no cumple ninguno de los dos.</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 03 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-group">
+        <span class="section-tag">Habilidades técnicas</span>
+        <div class="section-title">Lo que el mercado <em>realmente busca.</em></div>
+      </div>
+    </div>
+    <hr class="hr-sage">
+    <p class="section-intro">No escribas "manejo de Office" sin más. El mercado actuarial actual diferencia perfiles por las herramientas que dominan y cómo las han aplicado. Aquí las habilidades clave por perfil de salida.</p>
+
+    <table class="skills-table">
+      <thead>
+        <tr>
+          <th>Perfil</th>
+          <th>Herramientas esenciales</th>
+          <th>Diferenciador</th>
+          <th>Empleadores típicos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ciencias Actuariales</td>
+          <td>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Quarto</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">Excel</span>
+          </td>
+          <td>Conocimiento de normativa mexicana, estándares actuariales y manejo de datos regulatorios (LISF, CUSF, CNSF, EPA)</td>
+          <td>Aseguradoras · CNSF · Reaseguradoras</td>
+        </tr>
+        <tr>
+          <td>Ciencia de datos</td>
+          <td>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Jupyter</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Azure</span>
+          </td>
+          <td>Proyecto en GitHub con modelo de ML documentado, uso básico de servicios cloud y despliegue sencillo</td>
+          <td>Fintech · Insurtech · Startups · Big Tech</td>
+        </tr>
+        <tr>
+          <td>Finanzas cuantitativas</td>
+          <td>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Excel avanzado</span>
+            <span class="skill-tag">Bloomberg básico</span>
+          </td>
+          <td>Valuación de instrumentos · modelización de tasas · riesgo de mercado · AMIB Figura 3 como plus para inversiones</td>
+          <td>Banca · Casas de bolsa · Operadoras de fondos · Consultoría financiera</td>
+        </tr>
+        <tr>
+          <td>Consultoría · Big 4</td>
+          <td>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Python</span>
+          </td>
+          <td>Capacidad de presentación ejecutiva · redacción de reportes · IFRS 17 básico</td>
+          <td>Consultoras · Auditoría · Riesgo · Instituciones aseguradoras</td>
+        </tr>
+        <tr>
+          <td>Revenue Management</td>
+          <td>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Power BI</span>
+          </td>
+          <td>Análisis de precios · elasticidad · modelos de demanda · dashboards</td>
+          <td>Aerolíneas · Hotelería · Retail · E-commerce</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="contraste">
+      <div class="contraste-item contraste-no">
+        <span class="contraste-label"> No funciona</span>
+        <div class="contraste-text">"Manejo de R, Python y Excel a nivel intermedio."</div>
+      </div>
+      <div class="contraste-item contraste-si">
+        <span class="contraste-label"> Sí funciona</span>
+        <div class="contraste-text">"<strong>R:</strong> ajuste de distribuciones, modelización GLM, visualización con ggplot2 — proyecto disponible en GitHub. <strong>Python:</strong> análisis exploratorio, scikit-learn. <strong>Excel:</strong> tablas dinámicas, Power Query."</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      
+      <div>No digas que <strong>"manejas"</strong> una herramienta — di <strong>qué hiciste con ella</strong>. Un proyecto documentado en GitHub vale más que cualquier adjetivo en tu CV.</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 04 -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title-group">
+        <span class="section-tag">Errores frecuentes</span>
+        <div class="section-title">Lo que descarta un CV <em>automáticamente.</em></div>
+      </div>
+    </div>
+    <hr class="hr-sage">
+    <p class="section-intro">Estos errores aparecen en la mayoría de los CVs que se descartan en los primeros 6 segundos. Son fáciles de corregir — y marcan una diferencia enorme.</p>
+
+    <div class="errors-list">
+      <div class="error-item">
+                <div class="error-content">
+          <div class="error-title">Correo informal</div>
+          <div class="error-desc">actuario_guapo@hotmail.com o actuaria2024@gmail.com comunican descuido antes de leer una sola línea más.</div>
+          <div class="error-fix"> Crea nombre.apellido@gmail.com o usa el correo institucional si aún eres estudiante.</div>
+        </div>
+      </div>
+      <div class="error-item">
+                <div class="error-content">
+          <div class="error-title">Foto en CV digital / ATS</div>
+          <div class="error-desc">En versión digital se recomienda no incluir fotografía para mejorar compatibilidad con sistemas ATS y reducir sesgos en filtros automatizados.</div>
+          <div class="error-fix"> Si te solicitan una versión con foto, usa una imagen profesional reciente; para aplicaciones digitales generales, prioriza versión sin foto.</div>
+        </div>
+      </div>
+      <div class="error-item">
+                <div class="error-content">
+          <div class="error-title">Objetivo genérico copiado</div>
+          <div class="error-desc">"Busco desarrollarme profesionalmente en una empresa de prestigio que me permita crecer" no dice nada sobre ti ni sobre el puesto.</div>
+          <div class="error-fix"> Elimina el objetivo o reemplázalo con un resumen de 2 líneas específico al puesto que aplicas.</div>
+        </div>
+      </div>
+      <div class="error-item">
+                <div class="error-content">
+          <div class="error-title">Más de 2 páginas sin experiencia que lo justifique</div>
+          <div class="error-desc">Un CV largo sin contenido sustancial comunica que no sabes priorizar — una habilidad clave en cualquier rol actuarial.</div>
+          <div class="error-fix"> Una página para perfiles junior. Dos páginas solo si tienes más de 5 años de experiencia relevante.</div>
+        </div>
+      </div>
+      <div class="error-item">
+                <div class="error-content">
+          <div class="error-title">LinkedIn desactualizado o sin URL personalizada</div>
+          <div class="error-desc">Si incluyes LinkedIn pero tiene la URL genérica (linkedin.com/in/usuario123456) o está vacío, mejor no incluirlo.</div>
+          <div class="error-fix"> Personaliza tu URL en LinkedIn (linkedin.com/in/tu-nombre) y asegúrate de que el perfil esté completo.</div>
+        </div>
+      </div>
+      <div class="error-item">
+                <div class="error-content">
+          <div class="error-title">Habilidades sin contexto</div>
+          <div class="error-desc">"Manejo de R, Python, Excel, SPSS, SAS, SQL, Power BI, Tableau" en una lista sin más contexto no genera confianza — genera escepticismo.</div>
+          <div class="error-fix"> Menos herramientas, mejor explicadas. Prioriza las que puedes demostrar con un proyecto real.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 05 -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title-group">
+        <span class="section-tag">Lo que te diferencia</span>
+        <div class="section-title">Esto hace que <em>te llamen.</em></div>
+      </div>
+    </div>
+    <hr class="hr-sage">
+    <p class="section-intro">En un stack de 50 CVs similares, estos elementos hacen que el tuyo se quede encima del escritorio. No requieren años de experiencia — requieren iniciativa y documentación.</p>
+
+    <div class="diff-grid">
+      <div class="diff-card">
+                <div class="diff-title">Repositorio en GitHub</div>
+        <div class="diff-body">Un repositorio público con un proyecto actuarial limpio, documentado y con README dice más que cualquier línea de tu CV. <strong>Es tu portafolio en acción.</strong></div>
+      </div>
+      <div class="diff-card">
+                <div class="diff-title">Reporte en Quarto</div>
+        <div class="diff-body">Un análisis documentado en Quarto — con código, resultados y conclusiones — muestra que puedes <strong>comunicar tu trabajo técnico</strong> a una audiencia no técnica.</div>
+      </div>
+      <div class="diff-card">
+                <div class="diff-title">Conocimiento regulatorio</div>
+        <div class="diff-body">Mencionar LISF, CUSF, EPA o LCNBV en contexto real — no solo como palabras clave — posiciona tu perfil <strong>con mayor claridad técnica frente a otros perfiles junior.</strong></div>
+      </div>
+      <div class="diff-card">
+                <div class="diff-title">Perfil financiero / inversiones</div>
+        <div class="diff-body">En perfiles orientados a inversiones, riesgos financieros o banca, certificaciones como <strong>AMIB Figura 3</strong> pueden complementar el perfil técnico y abrir oportunidades fuera del sector asegurador tradicional.</div>
+      </div>
+      <div class="diff-card">
+                <div class="diff-title">Formación complementaria verificable</div>
+        <div class="diff-body">Cursos de Academia Santander, becariados SAS u otros programas gratuitos suman más cuando los conectas con <strong>un entregable concreto</strong>: dashboard, notebook, reporte o repositorio.</div>
+      </div>
+      <div class="diff-card">
+                <div class="diff-title">R y Python en paralelo</div>
+        <div class="diff-body">Dominar ambas herramientas para el mismo problema muestra <strong>adaptabilidad al entorno laboral</strong> — las aseguradoras usan R, las fintech prefieren Python.</div>
+      </div>
+      <div class="diff-card">
+                <div class="diff-title">Membresía activa</div>
+        <div class="diff-body">Pertenecer al CONAC, participar en talleres de la CAS o integrarse a asociaciones estudiantiles y técnicas muestra <strong>compromiso con la profesión</strong> más allá del aula — especialmente en perfiles sin experiencia laboral.</div>
+      </div>
+      <div class="diff-card">
+                <div class="diff-title">LinkedIn con contenido técnico</div>
+        <div class="diff-body">Un perfil de LinkedIn donde compartes o comentas contenido actuarial demuestra <strong>interés genuino en la industria</strong> — y te hace visible antes de cualquier proceso de selección.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 06 — CHECKLIST -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title-group">
+        <span class="section-tag">Checklist final</span>
+        <div class="section-title">Antes de enviar, <em>revisa esto.</em></div>
+      </div>
+    </div>
+    <hr class="hr-sage">
+
+    <div class="checklist">
+      <div class="checklist-title">Tu CV está <em>listo</em> cuando…</div>
+      <div class="checklist-grid">
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>Tiene máximo 1 página para perfil junior (2 solo si la experiencia lo justifica)</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>El correo es profesional — nombre.apellido@dominio.com</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>Cada experiencia tiene verbo de acción + resultado concreto</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>Las habilidades técnicas tienen contexto — proyecto o aplicación</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>El LinkedIn está actualizado y con URL personalizada</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>GitHub incluido — con al menos un proyecto documentado</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>El servicio social está presentado con verbo + resultado</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>No tiene objetivo genérico — o fue reemplazado por un resumen específico</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>Para versión digital/ATS, no incluye foto; si la solicitan, usa una imagen profesional</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>Membresías en asociaciones actuariales incluidas si aplica</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>El archivo se llama CV_Nombre_Apellido.pdf — no "cv final v3"</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>La formación complementaria incluye institución, tema, año y entregable cuando aplica</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span>Está adaptado al perfil específico que aplicas — no es genérico</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert">
+      
+      <div>En ActuaryLab trabajamos exactamente este tipo de criterio aplicado con datos del mercado. <strong>Si quieres ir más allá del CV</strong> — construye el portafolio que lo respalda.</div>
+    </div>
+  </div>
+
+</div>
+
+<!--  CTA DESCARGA  -->
+<div style="padding: 0 52px; max-width: 1004px; margin: 0 auto;">
+  <div class="cta-section">
+    <div class="cta-content">
+      <span class="cta-tag"> Field Resources · Descarga gratuita</span>
+      <div class="cta-title">Descarga el paquete<br><em>CV Actuarial</em></div>
+      <p class="cta-sub">Incluye guía en PDF, checklist final y una plantilla LaTeX editable para construir tu CV.<br>Gratis — solo déjanos tu correo.</p>
+      <div class="cta-form">
+        <a class="cta-btn" href="https://forms.gle/GpEvtCBFQkHBUDHs5" target="_blank" rel="noopener" style="text-decoration:none;">Descargar gratis →</a>
+      </div>
+      <p class="cta-note">Sin spam. Solo contenido ActuaryLab cuando publiquemos algo nuevo.</p>
+    </div>
+  </div>
+</div>
+
+<!--  FOOTER  -->
+<div class="footer" style="margin-top:0;">
+  <div class="footer-brand">Actuary<span>Lab</span></div>
+  <div class="footer-meta">
+    Field Resources · Guía del CV Actuarial<br>
+    actuarylabmx.com · @actuarylab
+  </div>
+</div>
+
+
+
+</body>
+</html>
